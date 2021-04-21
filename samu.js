@@ -1708,7 +1708,7 @@ case 'ytmp3':
 quoted: mek, caption: infomp3, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
   })
   samu330.sendMessage(from, lagu, audio, {
-mimetype: 'audio/mp4', duration :-999999999999999, ptt:true, filename: `${sam.result.title}.mp3`, quoted: mek, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
+mimetype: 'audio/mp4', duration :-999999999999999, filename: `${sam.result.title}.mp3`, quoted: mek, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
   })
   
   } catch {
@@ -1732,7 +1732,7 @@ case 'ytmp4':
 quoted: mek, caption: infomp3, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
   })
   samu330.sendMessage(from, lagu, video, {
-mimetype: 'video/mp4', duration :-999999999999999, ptt:true, filename: `${anu.result.title}.mp4`, quoted: mek, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
+mimetype: 'video/mp4', duration :-999999999999999, filename: `${anu.result.title}.mp4`, quoted: mek, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
   })
   
   } catch {
