@@ -344,37 +344,7 @@ if (isMedia && !mek.message.videoMessage || isQuotedImage) {
                                                         .addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
 							.toFormat('webp')
 						  	.save(ran)
-                                        } else if (isMedia && mek.message.videoMessage.seconds < 11 || isQuotedVideo && mek.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.seconds < 11) {
-                                                const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek        
-						const media = await samu330.downloadAndSaveMediaMessage(encmedia)
-                                                ran = getRandom('.webp')
-                                                reply(mess.wait)
-                                                await ffmpeg(`./${media}`)
-                                                        .inputFormat(media.split('.')[1])        
-							.on('start', function (cmd) {
-                                                                console.log(`Started : ${cmd}`)     
-							})
-                                                        .on('error', function (err) {
-                                                                console.log(`Error : ${err}`)
-                                                                fs.unlinkSync(media)
-                                                                tipe = media.endsWith('.mp4') ? 'video' : 'gif'                                                                                        
-								reply(`❌ Error al convertir el ${tipe} a stiker`)
-                                                        })
-                                                        .on('end', function () {
-                                                                console.log('Finish')          
-								exec(`webpmux -set exif ${addMetadata('Auto-StMv-By:-Samu330-Sam-y-Perry')} ${ran} -o ${ran}`, async (error) => {
-                                                                        if (error) return reply(mess.error.stick)                                                                                
-									samu330.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek, contextInfo: {"forwardingScore": 9999, "isForwarded": true}})
-                                                                        reply(mess.success)       
-									fs.unlinkSync(media)          
-									fs.unlinkSync(ran)        
-								})           
-							            
-							})              
-							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])                                                                                    
-							.toFormat('webp')         
-							.save(ran)            
-					}
+                                        }
 }
 
 
@@ -2216,7 +2186,7 @@ if (args[0] === '1') {
 	fs.writeFileSync('./data/antimedia.json', JSON.stringify(antimedia))      
 	reply(`*[ Activado ]*`)             
 } else if (args[0] === '0') {             
-	var ini = anti.indexOf(from)
+	var ini = antimedia.indexOf(from)
 	antimedia.splice(ini, 1)           
 	fs.writeFileSync('./data/antimedia.json', JSON.stringify(antimedia))       
 	reply(`Desactivado`)              
@@ -2235,7 +2205,7 @@ if (args[0] === '1') {
 	fs.writeFileSync('./data/autostick.json', JSON.stringify(autostick))      
 	reply(`*[ Activado ]*`)         
 } else if (args[0] === '0') {           
-	var ini = anti.indexOf(from)
+	var ini = autostick.indexOf(from)
 	autostick.splice(ini, 1)                  
 	fs.writeFileSync('./data/autostick.json', JSON.stringify(autostick))      
 	reply(`Desactivado`)              
@@ -2255,7 +2225,7 @@ break
                  	                        fs.writeFileSync('./data/badword.json', JSON.stringify(badword))
                   	                        reply(`*[ Activado ]*`)
                                         } else if (args[0] === '0') {
-                  	                        var ini = anti.indexOf(from)
+                  	                        var ini = antibad.indexOf(from)
 						badword.splice(ini, 1)
                  	                        fs.writeFileSync('./data/badword.json', JSON.stringify(badword))
                  	                        reply(`Desactivado`)
@@ -2304,7 +2274,7 @@ break
 						reply('*Anti-link activado ✔️*')
 						samu330.sendMessage(from,`Los miembros que manden un link serán eliminados, *OJO* _CULAQUIER TIPO DE LINK_`, text)
 					} else if ((args[0]) === '0') {
-						var ini = anti.indexOf(from)
+						var ini = antilink.indexOf(from)
 						antilink.splice(ini, 1)
 						fs.writeFileSync('./data/antilink.json', JSON.stringify(antilink))
 						reply('Anti-link desactivado ✔️')
