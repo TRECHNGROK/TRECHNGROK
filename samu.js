@@ -56,6 +56,7 @@ const antimedia = JSON.parse(fs.readFileSync('./data/antimedia.json'))
 const antilink = JSON.parse(fs.readFileSync('./data/antilink.json'))
 const samih = JSON.parse(fs.readFileSync('./data/simi.json'))
 const autostick = JSON.parse(fs.readFileSync('./data/autostick.json'))
+const antileg = JSON.parse(fs.readFileSync('./data/antileg.json'))
 //*********
 
 //*********File json temp
@@ -271,6 +272,7 @@ _*Ojala y le baya bien, y mas despues..... que lo atropelle un tren!!🚉🤣*_
 			const isAntiLink = isGroup ? antilink.includes(from) : false
 			const isAntiMedia = isGroup ? antimedia.includes(from) : false
 			const isAutoSt = isGroup ? autostick.includes(from) : false
+			const isAntiLeg = isGroup ? antileg.includes(from) : false
       const isRegister = checkRegisteredUser(sender)
       const soyYoxd = sender === botNumber ? true : false
       const q = args.join(' ')
@@ -307,8 +309,8 @@ quoted: mek, "forwardingScore": 9999, "isForwarded": true
 }
 			
 //*********MessageType
-			const isMedia = (type === 'imageMessage' || type === 'videoMessage')
-			const isQuotedText = type === 'extendedTextMessage' && content.includes('textMessage')
+const isMedia = (type === 'imageMessage' || type === 'videoMessage')
+const isQuotedText = type === 'extendedTextMessage' && content.includes('textMessage')
 const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
 const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
 const isQuotedAudio = type === 'extendedTextMessage' && content.includes('audioMessage')
@@ -316,7 +318,7 @@ const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stic
 
 
 //autoStiker By Samu330
-if (isGroup && isAutoSt) {
+if (isGroup && isAutoSt && !soyYoxd) {
 if (isMedia && !mek.message.videoMessage || isQuotedImage) {                        
 	const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek       
 	const media = await samu330.downloadAndSaveMediaMessage(encmedia) 
@@ -390,7 +392,55 @@ if (isMedia && !mek.message.videoMessage || isQuotedImage) {
 			}
 	}
 
-			if (isGroup && isBotGroupAdmins && isAntiMedia) {         
+			
+			
+			if (isGroup && isBotGroupAdmins && isAntiLeg) {         
+				if (isQuotedAudio) {
+					if (!isGroupAdmins) {
+                                        samu330.updatePresence(from, Presence.composing)
+						var kic = `${sender.split("@")[0]}@s.whatsapp.net`     
+			reply(`Lo siento ${sender.split("@")[0]}, pero los audios no estan permitidos aqui`)
+				samu330.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})       
+					}        
+				}      
+			}
+			
+			if (isGroup && isBotGroupAdmins && isAntiLeg) {         
+				if (MessageType.location && MessageType.liveLocation) {
+					if (!isGroupAdmins) {
+                                        samu330.updatePresence(from, Presence.composing)
+						var kic = `${sender.split("@")[0]}@s.whatsapp.net`     
+			reply(`Lo siento ${sender.split("@")[0]}, pero las localidades no estan permitidas aqui`)
+				samu330.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})       
+					}        
+				}      
+			}
+			
+			
+			if (isGroup && isBotGroupAdmins && isAntiLeg && !soyYoxd) {         
+				if (args.length > 50) return reply('*Textos con mas de 50000 caracteres se consideran trabas de texto!!') {
+					if (!isGroupAdmins) {
+                                        samu330.updatePresence(from, Presence.composing)
+						var kic = `${sender.split("@")[0]}@s.whatsapp.net`     
+			reply(`Lo siento ${sender.split("@")[0]}, pero las travas de texto no estan permitidas aqui`)
+				samu330.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})       
+					}        
+				}      
+			}
+			
+			if (isGroup && isBotGroupAdmins && isAntiLeg && !soyYoxd) {         
+				if (MessageType.document && MessageType.product && MessageType.contact) {
+					if (!isGroupAdmins) {
+                                        samu330.updatePresence(from, Presence.composing)
+						var kic = `${sender.split("@")[0]}@s.whatsapp.net`     
+			reply(`Lo siento ${sender.split("@")[0]}, pero los *Documentos, productos ni contactos* estan permitids aqui`)
+				samu330.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})       
+					}        
+				}      
+			}
+			
+			
+			if (isGroup && isBotGroupAdmins && isAntiMedia && !soyYoxd) {         
 				if (isMedia && !mek.message.videoMessage || isQuotedImage) {
 					if (!isGroupAdmins) {
                                         samu330.updatePresence(from, Presence.composing)
@@ -400,7 +450,7 @@ if (isMedia && !mek.message.videoMessage || isQuotedImage) {
 					}        
 				}      
 			}
-			if (isGroup && isBotGroupAdmins && isAntiMedia) {
+			if (isGroup && isBotGroupAdmins && isAntiMedia && !soyYoxd) {
 				if (isMedia && mek.message.videoMessage) {
                                         if (!isGroupAdmins) {
                                         samu330.updatePresence(from, Presence.composing)
@@ -633,13 +683,13 @@ const Menu = {
 text: `👑Samu330🏆
 🔐Hola *${pushname}* 
 
-${samu}❑ Prefijo:${samu}「 ${prefix} 」
-${samu}❑ Tiempo de actividad:${samu} *${kyun(uptime)}*
-${samu}❑ Modo:${samu} *ON*
-${samu}❑ Grupo:${samu} *${groupName}*
-${samu}❑ Número de grupos:${samu} *${_registered.length}*
-${samu}❑ Número de chats:${samu} *${totalchat.length}*
-${samu}❑ Numero del Dueño wa.me/+529984907794${samu}
+ࣿ${samu}❑ Prefijo:${samu}「 ${prefix} 」
+ࣿ${samu}❑ Tiempo de actividad:${samu} *${kyun(uptime)}*
+ࣿ${samu}❑ Modo:${samu} *ON*
+ࣿ${samu}❑ Grupo:${samu} *${groupName}*
+ࣿ${samu}❑ Número de grupos:${samu} *${_registered.length}*
+ࣿ${samu}❑ Número de chats:${samu} *${totalchat.length}*
+ࣿ${samu}❑ Numero del Dueño wa.me/+529984907794${samu}
 
 ⍣ *BOT INFO* ⍣
 ${samu}◦ 🔋 nivel de bateria :${samu}
@@ -650,46 +700,15 @@ ${samu}◦ 🚄Velocidad :${samu} *${process.uptime()}*
 ${samu}◦ 📲Sistema operativo :${samu} *${samu330.user.phone.device_manufacturer}*
 ${samu}◦ 🪀version de${samu} *WhatsApp* : *${samu330.user.phone.wa_version}*
 
-_LOS COMANDOS QUE APARECEN A CONTINUACION NO SON TODOS LOS COMANDOS DEL BOT, ASI QUE ESPERA A QUE CREE UN BUEN MENU:D_
+_Lista de MENUs_
 
-╓╴*COMADOS DE STICKERS*
-${bodyM}
-${bodyM} ${prefix}sticker (Imagen, video o gif)
-${bodyM} ${prefix}sticker nobg
-${bodyM}
-${bodyM}╴ *COMANDOS DE MEDIA*
-${bodyM}
-${bodyM} ${prefix}imagen (algo para buscar:v)
-${bodyM} ${prefix}toimg (sticker a imagen)
-${bodyM} ${prefix}tomp3 (video a mp3)
-${bodyM} ${prefix}pubg 
-${bodyM} ${prefix}sombra
-${bodyM}
-${bodyM}╴ *COMANDOS DE GRUPOS*
-${bodyM}
-${bodyM} ${prefix}readmore
-${bodyM} ${prefix}reply
-${bodyM} ${prefix}tagme
-${bodyM} ${prefix}all
-${bodyM} ${prefix}listonline
-${bodyM} ${prefix}hidetag
-${bodyM} ${prefix}notif
-${bodyM} ${prefix}closegc
-${bodyM} ${prefix}opengc
-${bodyM} ${prefix}setname
-${bodyM} ${prefix}setdesc
-${bodyM} ${prefix}setppgc
-${bodyM} ${prefix}promote
-${bodyM} ${prefix}demote
-${bodyM} ${prefix}kick
-${bodyM} ${prefix}add
-${bodyM}
-${bodyM}*COMADOS DE DESCARGAS*
-${bodyM}
-${bodyM} ${prefix}play
-${bodyM} ${prefix}ytmp3
-${bodyM} ${prefix}ytmp4
-........................
+${bodyM} ${prefix}menumedia
+${bodyM} ${prefix}menust
+${bodyM} ${prefix}menugrupos
+${bodyM} ${prefix}menudescargas
+
+*Pocos menus?*
+_No son todos, este bot esta en desarrollo_
 `,
 	contextInfo: {
   mentionedJid: [sender], "forwardingScore": 9999, "isForwarded": true
@@ -698,7 +717,146 @@ ${bodyM} ${prefix}ytmp4
   samu330.sendMessage(from, Menu, text, {
 quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "mimetype": "image/jpeg", "caption": "➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙😈\n❣️⃞🔥𝙎꯭𝙖͠𝙢꯭ 𝙔 ꯭𝙋꯭𝙚𝙧𝙧꯭𝙮🔥❣️" ,"jpegThumbnail": fs.readFileSync(`./NyanBot.jpg`)}}}})              
   break
+					
+case 'menumedia':
+   samu330.updatePresence(from, Presence.composing)
+  if (!isRegister) return reply(mess.only.daftarB)
+  uptime = process.uptime()
+const Menu = {
+text: `
+🔐Hola *${pushname}* 
 
+⍣ *BOT INFO* ⍣
+${samu}◦ 🔋 nivel de bateria :${samu}
+${samu}◦ 🌐Navegador :${samu} *${samu330.browserDescription[1]}*
+${samu}◦ 📡servidor :${samu} *${samu330.browserDescription[0]}*
+${samu}◦ ✅version :${samu} *${samu330.browserDescription[2]}*
+${samu}◦ 🚄Velocidad :${samu} *${process.uptime()}*
+${samu}◦ 📲Sistema operativo :${samu} *${samu330.user.phone.device_manufacturer}*
+${samu}◦ 🪀version de${samu} *WhatsApp* : *${samu330.user.phone.wa_version}*
+
+
+${bodyM} ${prefix}imagen *(Busca imagenes de pinterest)*
+${bodyM} ${prefix}anime
+${bodyM} ${prefix}wp
+${bodyM} ${prefix}loli
+${bodyM} ${prefix}neko
+${bodyM} ${prefix}twit
+${bodyM} ${prefix}sombra
+${bodyM} ${prefix}pubg
+`,
+	contextInfo: {
+  mentionedJid: [sender], "forwardingScore": 9999, "isForwarded": true
+}
+  }
+  samu330.sendMessage(from, Menu, text, {
+quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "mimetype": "image/jpeg", "caption": "➫𝑴𝒆𝒏𝒖 𝑫𝒆 𝑴𝒆𝒅𝒊𝒂\n❣️⃞🔥𝙎꯭𝙖͠𝙢꯭ 𝙔 ꯭𝙋꯭𝙚𝙧𝙧꯭𝙮🔥❣️" ,"jpegThumbnail": fs.readFileSync(`./NyanBot.jpg`)}}}})              
+  break
+
+case 'menust':
+   samu330.updatePresence(from, Presence.composing)
+  if (!isRegister) return reply(mess.only.daftarB)
+  uptime = process.uptime()
+const Menu = {
+text: `
+🔐Hola *${pushname}* 
+
+⍣ *BOT INFO* ⍣
+${samu}◦ 🔋 nivel de bateria :${samu}
+${samu}◦ 🌐Navegador :${samu} *${samu330.browserDescription[1]}*
+${samu}◦ 📡servidor :${samu} *${samu330.browserDescription[0]}*
+${samu}◦ ✅version :${samu} *${samu330.browserDescription[2]}*
+${samu}◦ 🚄Velocidad :${samu} *${process.uptime()}*
+${samu}◦ 📲Sistema operativo :${samu} *${samu330.user.phone.device_manufacturer}*
+${samu}◦ 🪀version de${samu} *WhatsApp* : *${samu330.user.phone.wa_version}*
+
+
+${bodyM} ${prefix}sticker *(Imagen, video o gif)*
+${bodyM} ${prefix}sticker nobg *(Etiqueta una foto para crear un sticker sin fondo)*
+${bodyM} ${prefix}autost
+${bodyM} ${prefix}attp _En mantenimiento_
+${bodyM} ${prefix}ttp _En mantenimiento_
+`,
+	contextInfo: {
+  mentionedJid: [sender], "forwardingScore": 9999, "isForwarded": true
+}
+  }
+  samu330.sendMessage(from, Menu, text, {
+quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "mimetype": "image/jpeg", "caption": "➫𝑴𝒆𝒏𝒖 𝑫𝒆 𝑺𝒕𝒄𝒌𝒆𝒓𝒔\n❣️⃞🔥𝙎꯭𝙖͠𝙢꯭ 𝙔 ꯭𝙋꯭𝙚𝙧𝙧꯭𝙮🔥❣️" ,"jpegThumbnail": fs.readFileSync(`./NyanBot.jpg`)}}}})              
+  break
+case 'menugrupos':
+   samu330.updatePresence(from, Presence.composing)
+  if (!isRegister) return reply(mess.only.daftarB)
+  uptime = process.uptime()
+const Menu = {
+text: `
+🔐Hola *${pushname}* 
+
+⍣ *BOT INFO* ⍣
+${samu}◦ 🔋 nivel de bateria :${samu}
+${samu}◦ 🌐Navegador :${samu} *${samu330.browserDescription[1]}*
+${samu}◦ 📡servidor :${samu} *${samu330.browserDescription[0]}*
+${samu}◦ ✅version :${samu} *${samu330.browserDescription[2]}*
+${samu}◦ 🚄Velocidad :${samu} *${process.uptime()}*
+${samu}◦ 📲Sistema operativo :${samu} *${samu330.user.phone.device_manufacturer}*
+${samu}◦ 🪀version de${samu} *WhatsApp* : *${samu330.user.phone.wa_version}*
+
+${bodyM} ${samu}${prefix}antilink${samu}
+${bodyM} ${samu}${prefix}antimedia${samu}
+${bodyM} ${samu}${prefix}antileg${samu}
+${bodyM} ${samu}${prefix}antibad${samu}
+${bodyM} ${samu}${prefix}autost${samu}
+
+${bodyM} ${prefix}cerrar
+${bodyM} ${prefix}abrir
+${bodyM} ${prefix}setdesc
+${bodyM} ${prefix}setname
+${bodyM} ${prefix}setpic
+${bodyM} ${prefix}promote
+${bodyM} ${prefix}demote
+${bodyM} ${prefix}eliminar
+${bodyM} ${prefix}añadir
+${bodyM} ${prefix}notif
+${bodyM} ${prefix}reply
+${bodyM} ${prefix}link
+`,
+	contextInfo: {
+  mentionedJid: [sender], "forwardingScore": 9999, "isForwarded": true
+}
+  }
+  samu330.sendMessage(from, Menu, text, {
+quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "mimetype": "image/jpeg", "caption": "➫𝑴𝒆𝒏𝒖 𝑫𝒆 𝑮𝒓𝒖𝒑𝒐𝒔\n❣️⃞🔥𝙎꯭𝙖͠𝙢꯭ 𝙔 ꯭𝙋꯭𝙚𝙧𝙧꯭𝙮🔥❣️" ,"jpegThumbnail": fs.readFileSync(`./NyanBot.jpg`)}}}})              
+  break
+case 'menudescargas':
+   samu330.updatePresence(from, Presence.composing)
+  if (!isRegister) return reply(mess.only.daftarB)
+  uptime = process.uptime()
+const Menu = {
+text: `
+🔐Hola *${pushname}* 
+
+⍣ *BOT INFO* ⍣
+${samu}◦ 🔋 nivel de bateria :${samu}
+${samu}◦ 🌐Navegador :${samu} *${samu330.browserDescription[1]}*
+${samu}◦ 📡servidor :${samu} *${samu330.browserDescription[0]}*
+${samu}◦ ✅version :${samu} *${samu330.browserDescription[2]}*
+${samu}◦ 🚄Velocidad :${samu} *${process.uptime()}*
+${samu}◦ 📲Sistema operativo :${samu} *${samu330.user.phone.device_manufacturer}*
+${samu}◦ 🪀version de${samu} *WhatsApp* : *${samu330.user.phone.wa_version}*
+
+
+${bodyM} ${prefix}play *(Descarga de audios en nota de voz)*
+${bodyM} ${prefix}play2 *(Descarga de audios en mp3)*
+${bodyM} ${prefix}ytmp3
+${bodyM} ${prefix}ytmp4
+`,
+	contextInfo: {
+  mentionedJid: [sender], "forwardingScore": 9999, "isForwarded": true
+}
+  }
+  samu330.sendMessage(from, Menu, text, {
+quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "mimetype": "image/jpeg", "caption": "➫𝑫𝒆𝒔𝒄𝒂𝒓𝒈𝒂𝒔\n❣️⃞🔥𝙎꯭𝙖͠𝙢꯭ 𝙔 ꯭𝙋꯭𝙚𝙧𝙧꯭𝙮🔥❣️" ,"jpegThumbnail": fs.readFileSync(`./NyanBot.jpg`)}}}})              
+  break
 
 					
 					//BY SAMU330✅
@@ -706,7 +864,7 @@ quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { re
 					case 'cc':
 			
             const cc = await axios.get('https://videfikri.com/api/ccgenerator/')
-            samu330.sendMessage(from, `${cc.card.number}`, '', `${cc.card.cvv}`)
+            samu330.sendMessage(from, `${cc.result.creator}`)
             break
 					
 					
@@ -1138,7 +1296,7 @@ case 'rate':
   break
 
 
-case 'setppgc':
+case 'setpic':
 
 if (!isGroup) return reply(mess.only.group)
 if (!isRegister) return reply(mess.only.daftarB)
@@ -1169,29 +1327,48 @@ break
             await samu330.sendMessage(from, `${les.data.url}`, '', `${les.data.title}`)
             break
 					
-					
-				case 'sombra':
-                                        var gh = body.slice(7)
-                                        
-                                        if (args.length < 1) return reply(`Y el texto?\nEjemplo: ${prefix}sombra NyanBot`)
-                                        if (!isRegister) return reply(mess.only.daftarB)
-                                        reply(mess.wait)
-                                        anu = await fetchJson(`https://videfikri.com/api/textmaker/shadowtext/?text=${gh}`, {method: 'get'})
-                                        buffer = await getBuffer(anu.result)
-                                        samu330.sendMessage(from, buffer, image, {quoted: mek, caption: 'By 👑Samu330✅'})
-                                        break
-					
-					
+case 'sombra':
+if (!isRegister) return reply(mess.only.daftarB)
+
+if (args.length < 1) return reply('Ingresa un nombre para crear logo🔐')
+tels = body.slice(7)
+samu330.updatePresence(from, Presence.composing)
+reply(mess.wait)
+try {
+data = await fetchJson(`https://videfikri.com/api/textmaker/shadowtext/?text=${tels}`, {
+  method: 'get'
+})
+pok = await getBuffer(data)
+samu330.sendMessage(from, pok, image, {
+  quoted: mek, caption: `*${tels}*`, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
+})
+
+} catch {
+  reply(mess.ferr)
+}
+break
 				case 'pubg':
-                                        var gh = body.slice(5)
+					var gh = body.slice(5)
                                         var teks1 = gh.split("|")[0];
                                         var teks2 = gh.split("|")[1];
-                                        if (args.length < 1) return reply(`Y el texto?\nEjemplo: ${prefix}pubg NyanBot`)
-                                        if (!isRegister) return reply(mess.only.daftarB)
-                                        anu = await fetchJson(`https://videfikri.com/api/textmaker/pubgmlogo/?text1=${teks1}&text2=${teks2}`, {method: 'get'})
-                                        buffer = await getBuffer(anu.result)
-                                        samu330.sendMessage(from, buffer, image, {quoted: mek, caption: 'By @Samu330'})
-                                        break
+                                        if (args.length < 1) return reply(`Y el texto?\nEjemplo: ${prefix}pubg|NyanBot`)
+					if (!isRegister) return reply(mess.only.daftarB)
+					samu330.updatePresence(from, Presence.composing)
+					reply(mess.wait)
+try {
+data = await fetchJson(`https://videfikri.com/api/textmaker/pubgmlogo/?text1=${teks1}&text2=${teks2}`, {
+  method: 'get'
+})
+pok = await getBuffer(data)
+samu330.sendMessage(from, pok, image, {
+  quoted: mek, caption: `*${tels}*`, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
+})
+
+} catch {
+  reply(mess.ferr)
+}
+break
+				
 					
 					
 case 'triggered':
@@ -1645,7 +1822,7 @@ mimetype: 'audio/mp4', duration :-999999999999999, ptt:true, filename: `${anu.re
 //
 case 'play2':
   if (!isRegister) return reply(mess.only.daftarB)
-                                                                                                            if (args.length < 1) return reply('Escribe el nombre')
+  if (args.length < 1) return reply('Escribe el nombre')
   reply(mess.wait)
   play = body.slice(7)
   try {
@@ -1660,7 +1837,8 @@ quoted: mek, caption: infomp3, contextInfo: {"forwardingScore": 9999, "isForward
   samu330.sendMessage(from, lagu, audio, {
 mimetype: 'audio/mp4', duration :-999999999999999, filename: `${anu.result.title}.mp3`, quoted: mek  
   })                                                                                                                                                                                                                  } catch {                                                                                                   reply(mess.ferr)
-  }                                                                                                         break
+  }                                                        
+break
 
 //Arreglado por Samu330
 case 'ytmp3':
@@ -2173,6 +2351,25 @@ mimetype: 'video/mp4', filename: `${anu.nameInfo}.mp4`, quoted: mek
 
 				//case creado por samu
 			
+case 'antileg':                
+if (!isGroup) return reply(mess.only.group)
+if (!isGroupAdmins) return reply(mess.only.admin)     
+if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+if (args.length < 1) return reply('Escribe *1* para activar')          
+if (args[0] === '1') {                                    
+	if (isAntiLeg) return reply('*Ya está activo*')          
+	antileg.push(from)                          
+	fs.writeFileSync('./data/antileg.json', JSON.stringify(antileg))      
+	reply(`*[ Activado ]*`)             
+} else if (args[0] === '0') {             
+	var ini = antileg.indexOf(from)
+	antileg.splice(ini, 1)           
+	fs.writeFileSync('./data/antileg.json', JSON.stringify(antileg))       
+	reply(`Desactivado`)              
+} else {                                         
+	reply('1 para activar, 0 para desactivar')           
+}           
+break
 
 
 case 'antimedia':                
@@ -2549,6 +2746,7 @@ break
 
 //*********menambah member
 				case 'add':
+				case 'añadir':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -2610,7 +2808,7 @@ case 'setppbot':
 
 //*********Mengambil link grup
     case 'linkgroup':
-    case 'linkgc':
+    case 'link':
         if (!isGroup) return reply(mess.only.group)
         if (!isGroupAdmins) return reply(mess.only.admin)
         if (!isBotGroupAdmins) return reply(mess.only.Badmin)
