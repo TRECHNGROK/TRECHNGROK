@@ -721,7 +721,7 @@ ${samu}◦ 🪀version de${samu} *WhatsApp* : *${samu330.user.phone.wa_version}*
 
 ${bodyM} ${prefix}sticker *(Imagen, video o gif)*
 ${bodyM} ${prefix}sticker nobg *(Etiqueta una foto para crear un sticker sin fondo)*
-${bodyM} ${prefix}autost
+${bodyM} ${prefix}autostick
 ${bodyM} ${prefix}attp _En mantenimiento_
 ${bodyM} ${prefix}ttp _En mantenimiento_
 `,
