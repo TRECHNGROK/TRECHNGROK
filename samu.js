@@ -318,7 +318,7 @@ const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stic
 //autoStiker By Samu330
 if (isGroup && isAutoSt && !soyYoxd) {
 if (isMedia && !mek.message.videoMessage || isQuotedImage) {    
-	if (soyYoxd) { 
+	if (!soyYoxd) { 
 	const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek       
 	const media = await samu330.downloadAndSaveMediaMessage(encmedia) 
 	ran = getRandom('.webp')           
