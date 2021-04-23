@@ -1662,7 +1662,7 @@ break
 					
 					case 'getpic':
 					if (args.length < 1) return 
-					if (vnz.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('NyanBot')
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('NyanBot')
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
 						try {
 						pp = await samu330.getProfilePicture(mentioned)
@@ -1686,7 +1686,7 @@ break
 				media = await samu330.downloadAndSaveMediaMessage(encmedia)
 				ddatae = await imageToBase64(JSON.stringify(media).replace(/\"/gi, ''))
 
-				vanz.sendMessage(from, {
+				samu330.sendMessage(from, {
 
 					text: `${urlnye}`,
 
@@ -1799,7 +1799,7 @@ break
 					if (((isMedia && !mek.message.videoMessage) || isQuotedImage) && args.length == 0) {
 						ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek;
 						reply(mess.wait);
-						owgi = await vanz.downloadAndSaveMediaMessage(ger);
+						owgi = await samu330.downloadAndSaveMediaMessage(ger);
 						anu = await imgbbuploader('20a14861e4f7591f3dc52649cb07ae02', owgi);
 						teks = `${anu.display_url}`;
 						anu1 = await getBuffer(`https://some-random-api.ml/canvas/wasted?avatar=${teks}`);
@@ -1831,7 +1831,7 @@ var imgbb = require('imgbb-uploader')
 if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
   ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
   reply(mess.wait)
-  owgi = await vanz.downloadAndSaveMediaMessage(ted)
+  owgi = await samu330.downloadAndSaveMediaMessage(ted)
   tels = args.join(' ')
   anu = await imgbb(`${imgbb_key}`, owgi)
   satu = await getBuffer(`http://api.lolhuman.xyz/api/removebg?apikey=${lol}&img=${anu.display_url}`)
@@ -1843,8 +1843,8 @@ break
 
 case 'wanted':
 var imgbb = require('imgbb-uploader')
-if ((isMedia && !vnz.message.videoMessage || isQuotedImage) && args.length == 0) {
-  ted = isQuotedImage ? JSON.parse(JSON.stringify(vnz).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
+if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+  ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
   reply(mess.wait)
   owgi = await samu330.downloadAndSaveMediaMessage(ted)
   anu = await imgbb(`${imgbb_key}`, owgi)
@@ -2827,7 +2827,7 @@ var imgbb = require('imgbb-uploader')
 if ((isMedia && !mek.message.StickerMessage || isQuotedSticker) && args.length == 0) {
   ted = isQuotedSticker ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
   reply(mess.wait)
-  owgi = await vanz.downloadAndSaveMediaMessage(ted)
+  owgi = await samu330.downloadAndSaveMediaMessage(ted)
   tels = args.join(' ')
   anu = await imgbb(`${imgbb_key}`, owgi)
   hedhe = await fetchJson(`https://api.lolhuman.xyz/api/convert/webptomp4?apikey=${lol}&img=`)
