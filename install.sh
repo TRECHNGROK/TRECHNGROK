@@ -33,6 +33,7 @@ echo -e '\033[0m\033[1;36m
 apt-get install nodejs
 apt-get install libwebp
 apt-get install wget
+npm i cheerio
 npm i imgbb-uploader
 echo -e '\033[0m\033[1;31m
   ___                 _             _                       _         
@@ -201,6 +202,4 @@ echo -e '\033[0m\033[1;32m
  \033[0m'                      
  play Samu330.wav
  termimage nyan.png
-echo -e '\033[0m\033[1;31m
-SI ESCUCHASTE EL AUDIO, TODO ESTA BIEN, PROSEDE A INICIAR EL BOT CON: npm start
-\033[0m'
+ npm audit fix --force
