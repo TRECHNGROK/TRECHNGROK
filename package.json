@@ -44,7 +44,7 @@
     "request": "^2.81.0",
     "spinnies": "^0.5.1",
     "ytdl-core": "^4.4.0",
-    "brainly-scraper": "^1.0.3"
+    "brainly-scraper": "^1.0.3",
     "tiktok-scraper": "^1.4.7"
   },
   "devDependencies": {},
