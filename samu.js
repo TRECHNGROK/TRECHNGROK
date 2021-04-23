@@ -144,17 +144,33 @@ if (_registered[i].id === sender) {
 
 
 //*********Horario
-function kyun(seconds){
-  function pad(s){
-    return (s < 10 ? '0' : '') + s;
-  }
-  var hours = Math.floor(seconds / (60*60));
-  var minutes = Math.floor(seconds % (60*60) / 60);
-  var second = Math.floor(seconds % 60);
-  return `${pad(hours)}:${pad(minutes)}:${pad(second)}`;
+function kyun(seconds) {
+	function pad(s) {
+		return (s < 10 ? '0' : '') + s;
+	}
+	var hours = Math.floor(seconds / (60 * 60));
+	var minutes = Math.floor(seconds % (60 * 60) / 60);
+	var seconds = Math.floor(seconds % 60);
+	return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`
+let d = new Date
+				let locale = 'id'
+					let gmt = new Date(0).getTime() - new Date('1 Januari 2021').getTime()
+					let weton = ['Pahing', 'Pon','Wage','Kliwon','Legi'][Math.floor(((d * 1) + gmt) / 84600000) % 5]
+					let week = d.toLocaleDateString(locale, { weekday: 'long' })
+					let calender = d.toLocaleDateString(locale, {
+				day: 'numeric',
+				month: 'long',
+				year: 'numeric'
+				})
+			let v = new Date
+				let localle = 'id'
+					const harinya = d.toLocaleDateString(locale, { weekday: 'long' })
+				
+				var ramadhan = Math.floor(penghitungRmd - moment().format('DD:HH:mm')) 
+				let hri = new Date
+				let localev = 'id'
+					var hari= hri.toLocaleDateString(localev, { weekday: 'long' })
 }
-//*********
-
 
 //*********Whatsapp start connect
 async function starts() {
@@ -182,12 +198,29 @@ async function starts() {
 			console.log(anu)
 			if (anu.action == 'add') {
 				num = anu.participants[0]
+				const moment = require('moment-timezone')
+const jm = moment.tz('Asia/Jakarta').format('HH:mm:ss')
+			let d = new Date
+				let locale = 'id'
+					let gmt = new Date(0).getTime() - new Date('1 Januari 2021').getTime()
+					let weton = ['Pahing', 'Pon','Wage','Kliwon','Legi'][Math.floor(((d * 1) + gmt) / 84600000) % 5]
+					let week = d.toLocaleDateString(locale, { weekday: 'long' })
+					let calender = d.toLocaleDateString(locale, {
+				day: 'numeric',
+				month: 'long',
+				year: 'numeric'
+				})
+				try {
+pushnem = samu330.contacts[num] != undefined ? vanz.contacts[num].notify = undefined ? PhoneNumber('+' + num.replace('@s.whatsapp.net', '')).getNumber('international') : samu330.contacts[num].notify || samu330.contacts[num].vname : PhoneNumber('+' + num.replace('@s.whatsapp.net', '')).getNumber('international')
+} catch { 
+ pushnem = num.split('@')[0]
+}
 				try {
 					ppimg = await samu330.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
 				} catch {
 					ppimg = './src/image/pp.jpeg'
 			}
-				exec(`magick './src/wel.jpg' -gravity west -fill '#ff2fa2' -font './src/font-gue.ttf' -size 1280x710 -pointsize 75 -interline-spacing 7.5 -annotate +460-45 '${pushname}' -pointsize 35 -annotate +460+83 'Samu330 NyanBot' -pointsize 50 -annotate +460+200 'Bienvenido a ${mdata.subject}' '${ppimg}' -resize %[fx:t?u.w*0.2:u.w]x%[fx:?u.h*0.2:u.h] -gravity center -geometry -430+70 -composite 'hamsil.jpg'`)
+				exec(`magick './src/wel.jpg' -gravity west -fill '#ff2fa2' -font './src/font-gue.ttf' -size 1280x710 -pointsize 75 -interline-spacing 7.5 -annotate +460-45 '${pushname}' -pointsize 35 -annotate +460+83 'Bienvenido a:' -pointsize 50 -annotate +460+200 'Bienvenido a ${mdata.subject}' '${ppimg}' -resize %[fx:t?u.w*0.2:u.w]x%[fx:?u.h*0.2:u.h] -gravity center -geometry -430+70 -composite 'hamsil.jpg'`)
 				.on('error', () => reply('error'))
 				.on('exit', () => {
 				teks = `😙Hola, @${num.split('@')[0]}, _*Bienvenido a ${mdata.subject}, esperamos que te la pases a gusto en este grupo✨*_
@@ -198,7 +231,6 @@ ${mdata.desc}
 
 *Si quieres hacer uso del bot, primero tienes que registrarte para eso:*
 Usa *${prefix}reg*.`
-				let buff = await getBuffer(ppimg)
 				samu330.sendMessage(mdata.id, fs.readFileSync('hamsil.jpg'), MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			} else if (anu.action == 'remove') {
 				num = anu.participants[0]
@@ -206,6 +238,7 @@ Usa *${prefix}reg*.`
 _*Ojala y le baya bien, y mas despues..... que lo atropelle un tren!!🚉🤣*_
 *No se awiten gente, esten seguros que nadie lo extrañara:D*`
 				samu330.sendMessage(mdata.id, teks, MessageType.text,{ contextInfo: {"mentionedJid": [num]}})
+					})
 			}
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
@@ -213,11 +246,11 @@ _*Ojala y le baya bien, y mas despues..... que lo atropelle un tren!!🚉🤣*_
 	})
 
 	samu330.on('CB:Blocklist', json => {
-	if (blocked.length > 2) return
-	for (let i of json[1].blocklist) {
-		blocked.push(i.replace('c.us', 's.whatsapp.net'))
-	}
-})
+            if (blocked.length > 2) return
+	    for (let i of json[1].blocklist) {
+	    	blocked.push(i.replace('c.us','s.whatsapp.net'))
+	    }
+	})
 
 samu330.on('CB:action,,battery', json => {
 		global.batteryLevelStr = json[2][0][1].value
@@ -229,69 +262,11 @@ samu330.on('CB:action,,battery', json => {
 
 		
 		
-samu330.on('message-update', async (hurtz) => {
-	try {
-		const from = hurtz.key.remoteJid
-		const messageStubType = WA_MESSAGE_STUB_TYPES[hurtz.messageStubType] || 'MESSAGE'
-		const dataRevoke = JSON.parse(fs.readFileSync('./src/gc-revoked.json'))
-		const dataCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked.json'))
-		const dataBanCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked-banlist.json'))
-		const sender = hurtz.key.fromMe ? samu330.user.jid : hurtz.key.remoteJid.endsWith('@g.us') ? hurtz.participant : hurtz.key.remoteJid
-		const isRevoke = hurtz.key.remoteJid.endsWith('@s.whatsapp.net') ? true : hurtz.key.remoteJid.endsWith('@g.us') ? dataRevoke.includes(from) : false
-		const isCtRevoke = hurtz.key.remoteJid.endsWith('@g.us') ? true : dataCtRevoke.data ? true : false
-		const isBanCtRevoke = hurtz.key.remoteJid.endsWith('@g.us') ? true : !dataBanCtRevoke.includes(sender) ? true : false
-		if (messageStubType == 'REVOKE') {
-			console.log(`Estado del grupo : ${!isRevoke}\nEstado de todos los contactos : ${!isCtRevoke}\nEl estado del contacto está excluido : ${!isBanCtRevoke}`)
-			if (!isRevoke) return
-			if (!isCtRevoke) return
-			if (!isBanCtRevoke) return
-			const from = hurtz.key.remoteJid
-			const isGroup = hurtz.key.remoteJid.endsWith('@g.us') ? true : false
-			let int
-			let infoMSG = JSON.parse(fs.readFileSync('./src/.dat/msg.data.json'))
-			const id_deleted = hurtz.key.id
-			const conts = hurtz.key.fromMe ? samu330.user.jid : samu330.contacts[sender] || { notify: jid.replace(/@.+/, '') }
-			const pushname = hurtz.key.fromMe ? samu330.user.name : conts.notify || conts.vname || conts.name || '-'
-			const opt4tag = {
-				contextInfo: { mentionedJid: [sender] }
-			}
-			for (let i = 0; i < infoMSG.length; i++) {
-				if (infoMSG[i].key.id == id_deleted) {
-					const dataInfo = infoMSG[i]
-					const type = Object.keys(infoMSG[i].message)[0]
-					const timestamp = infoMSG[i].messageTimestamp
-					int = {
-						no: i,
-						type: type,
-						timestamp: timestamp,
-						data: dataInfo
-					}
-				}
-			}
-			const index = Number(int.no)
-			const body = int.type == 'conversation' ? infoMSG[index].message.conversation : int.type == 'extendedTextMessage' ? infoMSG[index].message.extendedTextMessage.text : int.type == 'imageMessage' ? infoMSG[index].message.imageMessage.caption : int.type == 'stickerMessage' ? 'Sticker' : int.type == 'audioMessage' ? 'Audio' : int.type == 'videoMessage' ? infoMSG[index].videoMessage.caption : infoMSG[index]
-			const mediaData = int.type === 'extendedTextMessage' ? JSON.parse(JSON.stringify(int.data).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : int.data
-			if (int.type == 'conversation' || int.type == 'extendedTextMessage') {
-				const strConversation = `		 「 *ANTI-DELETE* 」
-*• Nombre :* ${pushname}
-*• Numero :* wa.me/${sender.split('@')[0]}
-*• Tipo :* Text
-*• Mensaje :* ${body ? body : '-'}`
-				samu330.sendMessage(from, strConversation, MessageType.text)
-//MORE RAKIT SENDIRI :V
-			}
-		}
-} catch (e) {
-		console.log('Message : %s', color(e, 'red'))
-		// console.log(e)
-}
-})
-		
-		
-		
-	samu330.on('message-new', async (mek) => {
-	try {
-		if (!mek.message) return
+samu330.on('chat-update', async (mek) => {
+		try {
+            if (!mek.hasNewMessage) return
+            mek = mek.messages.all()[0]
+			if (!mek.message) return
 		if (mek.key && mek.key.remoteJid == 'status@broadcast') return
 		let infoMSG = JSON.parse(fs.readFileSync('./src/msg.data.json'))
 		infoMSG.push(JSON.parse(JSON.stringify(mek)))
@@ -301,64 +276,21 @@ samu330.on('message-update', async (hurtz) => {
 			infoMSG.splice(0, 4300)
 			fs.writeFileSync('./src/msg.data.json', JSON.stringify(infoMSG, null, 2))
 		}
-		 if (!mek.message) return
-		if (mek.key && mek.key.remoteJid == 'status@broadcast') return
-		const typei = Object.keys(mek.message)[0]
-		budo = (typei === 'conversation') ? mek.message.conversation : (typei === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
-			if(mek.key.fromMe){
-			}
-
-		if (!publik) {
-			if (!mek.key.fromMe) return
-		}
-		global.prefix
-		global.blocked
-		mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
-		global.batrei = global.batrei ? global.batrei : []
-	samu330.on('CB:action,,battery', json => {
-		const batteryLevelStr = json[2][0][1].value
-		const batterylevel = parseInt(batteryLevelStr)
-		global.batrei.push(batterylevel)
-	})
-		const content = JSON.stringify(mek.message)
-		const from = mek.key.remoteJid
-		const type = Object.keys(mek.message)[0]
-		var tipe = 'Teks'
-			if (type == 'imageMessage') {
-				tipe = 'Imagen'
-			} else if (type == 'stickerMessage') {
-				tipe = 'Stiker'
-			} else if (type === 'extendedTextMessage' && content.includes('imageMessage')) {
-				tipe = 'Etiqueta una Imagen'
-			} else if (type === 'extendedTextMessage' && content.includes('stickerMessage')) {
-				tipe = 'Etiqueta un Stiker'
-			} else if (type === 'extendedTextMessage' && content.includes('audioMessage')) {
-				tipe = 'Etiqueta un Audio'
-			} else if (type === 'extendedTextMessage' && content.includes('videoMessage')) {
-				tipe = 'Etiqueta un Video'
-			} else if (type === 'extendedTextMessage' && content.includes('conversation')) {
-				tipe = 'Etiqueta un Texto'
-			} else if (type === 'extendedTextMessage' && content.includes('productMessage')) {
-				tipe = 'Etiqueta un Producto'
-			} else if (type === 'extendedTextMessage' && content.includes('documentMessage')) {
-				tipe = 'Etiqueta un Documento'
-			} else if (type === 'extendedTextMessage' && content.includes('orderMessage')) {
-				tipe = 'Etiqueta un Pedido'
-			} else if (type === 'extendedTextMessage' && content.includes('contactMessage')) {
-				tipe = 'Etiqueta un Contacto'
-			} else if (type === 'extendedTextMessage' && content.includes('imageMessage')) {
-				tipe = 'Etiqueta una Locacion'
-			} else if (type === 'extendedTextMessage' && content.includes('mentionedJid')) {
-				tipe = 'Mencionar personas'
-			} else if (type === 'extendedTextMessage' && content.includes('matchedText')) {
-				tipe = 'Link'
-			} else if (type == 'videoMessage') {
-				tipe = 'Video'
-			} else if (type == 'conversation') {
-				tipe = 'Texto'
-			} else {
-				tipe = 'Aún no conocido'
-			}
+			if (!mek.message) return
+			if (mek.key && mek.key.remoteJid == 'status@broadcast') return
+			if (mek.key.fromMe) return
+			global.prefix
+			global.blocked
+			const content = JSON.stringify(mek.message)
+			const from = mek.key.remoteJid
+			const type = Object.keys(mek.message)[0]
+			const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
+			const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
+			body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
+			budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
+			const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
+			const args = body.trim().split(/ +/).slice(1)
+			const isCmd = body.startsWith(prefix)
 		const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
 		const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
 		body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
@@ -441,28 +373,28 @@ const fileurl = async(link, type) => {
 	 { fromMe: false,
 	 participant: `0@s.whatsapp.net`, ...(from ? 
 	 { remoteJid: "status@broadcast" } : {}) },
-	 message: { "documentMessage": { "title":"SELEP BOT","h": `${samu.fake}`, 'jpegThumbnail': fs.readFileSync('./NyanBot.jpg')}}
+	 message: { "documentMessage": { "title":"NyanBot","h": `${samu.fake}`, 'jpegThumbnail': fs.readFileSync('./NyanBot.jpg')}}
 	}
 	const floc = {
 	 key:
 	 { fromMe: false,
 	 participant: `0@s.whatsapp.net`, ...(from ? 
 	 { remoteJid: "status@broadcast" } : {}) },
-	 message: { "locationMessage": { "title":"SELEP BOT","h": `${samu.fake}`, 'jpegThumbnail': fs.readFileSync('./NyanBot.jpg')}}
+	 message: { "locationMessage": { "title":"NyanBot","h": `${samu.fake}`, 'jpegThumbnail': fs.readFileSync('./NyanBot.jpg')}}
 	}
 const fliveLoc = {
 	 key:
 	 { fromMe: false,
 	 participant: `0@s.whatsapp.net`, ...(from ? 
 	 { remoteJid: "status@broadcast" } : {}) },
-	 message: { "liveLocationMessage": { "title":"SELEP BOT","h": `${samu.fake}`, 'jpegThumbnail': fs.readFileSync('./NyanBot.jpg')}}
+	 message: { "liveLocationMessage": { "title":"NyanBot","h": `${samu.fake}`, 'jpegThumbnail': fs.readFileSync('./NyanBot.jpg')}}
 	}	
 	const fvid = {
 	 key:
 	 { fromMe: false,
 	 participant: `0@s.whatsapp.net`, ...(from ? 
 	 { remoteJid: "status@broadcast" } : {}) },
-	 message: { "videoMessage": { "title":"SELEP BOT","h": `${samu.fake}`, 'jpegThumbnail': fs.readFileSync('./NyanBot.jpg')}}
+	 message: { "videoMessage": { "title":"NyanBot","h": `${samu.fake}`, 'jpegThumbnail': fs.readFileSync('./NyanBot.jpg')}}
 	}
    const ftoko = {
 		key: {
@@ -489,10 +421,6 @@ const fliveLoc = {
 }
 
 //*********Balasan bot
-			const reply = (teks) => {
-				samu330.sendMessage(from, teks, text, {quoted: mek, tescuk, cr, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
-})
-			}
 			const sendMess = (hehe, teks) => {
 				samu330.sendMessage(hehe, teks, text, {contextInfo: {"forwardingScore": 9999, "isForwarded": true}}, {quoted: mek
 })
@@ -1107,61 +1035,7 @@ return reply(bang)
 reply(util.format(eval(`;(async () => { ${konsol} })()`)))
 break
 					
-					
-			case 'antieliminar':
-				const dataRevoke = JSON.parse(fs.readFileSync('./src/gc-revoked.json'))
-				const dataCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked.json'))
-				const dataBanCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked-banlist.json'))
-				const isRevoke = dataRevoke.includes(from)
-				const isCtRevoke = dataCtRevoke.data
-				const isBanCtRevoke = dataBanCtRevoke.includes(sender) ? true : false
-				const argz = body.split(' ')
-				if (argz.length === 1) return samu330.sendMessage(from, `Uso de la función antidelete :\n\n*${prefix}antieliminar [1/0]* (Para grupos)\n*${prefix}antieliminar [on/off]* (para todos los contactos)\n*${prefix}antieliminar banct 529984xxxxxxx* (para contactos en lista de prohibicion)`, MessageType.text)
-				if (argz[1] == '1') {
-					if (isGroup) {
-						if (isRevoke) return samu330.sendMessage(from, `Antidelete estaba habilitado en este grupo antes!`, MessageType.text)
-						dataRevoke.push(from)
-						fs.writeFileSync('./src/gc-revoked.json', JSON.stringify(dataRevoke, null, 2))
-						samu330.sendMessage(from, `*Se activo el Antidelete!*`, MessageType.text)
-					} else if (!isGroup) {
-						samu330.sendMessage(from, `Para usar en contacto *${prefix}antieliminar on*`, MessageType.text)
-					}
-				} else if (argz[1] == 'on') {
-					if (!isGroup) {
-						if (isCtRevoke) return samu330.sendMessage(from, `Antidelete se ha habilitado en todos los contactos anteriormente!`, MessageType.text)
-						dataCtRevoke.data = true
-						fs.writeFileSync('./src/ct-revoked.json', JSON.stringify(dataCtRevoke, null, 2))
-						samu330.sendMessage(from, `Antidelete habilitado en todos los contactos!`, MessageType.text)
-					} else if (isGroup) {
-						samu330.sendMessage(from, `Uso en grupos: *${prefix}antieliminar 1*`, MessageType.text)
-					}
-				} else if (argz[1] == 'banct') {
-					if (isBanCtRevoke) return samu330.sendMessage(from, `Este contacto ya está en la base de datos de la lista de prohibición.!`, MessageType.text)
-					if (argz.length === 2 || argz[2].startsWith('0')) return samu330.sendMessage(from, `Ingrese el codigo de area! ejemplo: 52998490xxxx`, MessageType.text)
-					dataBanCtRevoke.push(argz[2] + '@s.whatsapp.net')
-					fs.writeFileSync('./src/ct-revoked-banlist.json', JSON.stringify(dataBanCtRevoke, null, 2))
-					samu330.sendMessage(from, `El Contacto ${argz[2]} se ha añadido a la lista de prohibición de antidelete de forma permanente!`, MessageType.text)
-				} else if (argz[1] == '0') {
-					if (isGroup) {
-						const index = dataRevoke.indexOf(from)
-						dataRevoke.splice(index, 1)
-						fs.writeFileSync('./src/gc-revoked.json', JSON.stringify(dataRevoke, null, 2))
-						samu330.sendMessage(from, `*Succes disable Antidelete Grup!*`, MessageType.text)
-					} else if (!isGroup) {
-						samu330.sendMessage(from, `Para usar en contactos: *${prefix}antieliminar on*`, MessageType.text)
-					}
-				} else if (argz[1] == 'off') {
-					if (!isGroup) {
-						dataCtRevoke.data = false
-						fs.writeFileSync('./src/ct-revoked.json', JSON.stringify(dataCtRevoke, null, 2))
-						samu330.sendMessage(from, `Antidelete dimatikan disemua kontak!`, MessageType.text)
-					} else if (isGroup) {
-						samu330.sendMessage(from, `Para uso en grupos: *${prefix}antieliminar 1*`, MessageType.text)
-					}
-				}
-				break
-					
-					
+						
 			case '$':
 				const cmd = args.join(' ')
 				exec(cmd, (err, stdout) => {
@@ -3425,13 +3299,6 @@ break
 					} else {
 						return //console.log(color('[WARN]','red'), 'Unregistered Command from', color(sender.split('@')[0]))
 					}
-	samu330.on('CB:action,,battery', json => {
-		const batteryLevelStr = json[2][0][1].value
-		const batterylevel = parseInt(batteryLevelStr)
-		console.log('battrey ' + batterylevel)
-					})
-					console.log(color('@Samu330', 'yellow'), color(sender.split('@')[0]))
-                           }
 		} catch (e) {
 			console.log('Error : %s', color(e, 'green'))
 		}
