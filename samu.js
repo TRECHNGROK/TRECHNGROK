@@ -308,13 +308,13 @@ samu330.on('chat-update', async (mek) => {
     ownerB: '[❗] ¡Este comando solo puede ser utilizado por el creador del bot! ❌',
     admin: '[❗] ¡Este comando solo puede ser utilizado por administradores del grupo! ❌',
     Badmin: '[❗] ¡Este comando solo se puede usar cuando el bot es administrador! ❌',
-    daftarB: `*Hola, usa *${prefix}reg* para poder usar el bot*`
+    daftarB: `Hola, usa *${prefix}reg* para poder usar el bot`
   }
 }
       const totalchat = await samu330.chats.all()
 			const botNumber = samu330.user.jid
 			const samu = '```'
-			const ownerNumber = ["5214447000377@s.whatsapp.net"]
+			const ownerNumber = ["529984907794@s.whatsapp.net"]
 			const isGroup = from.endsWith('@g.us')
 			const sender =  isGroup ? mek.participant : mek.key.remoteJid
 			const groupMetadata = isGroup ? await samu330.groupMetadata(from) : ''
@@ -355,26 +355,26 @@ const fileurl = async(link, type) => {
 			
 
 //FAKE STATUS
-	const fimg = {
+const fimg = {
 	 key:
 	 { fromMe: false,
 	 participant: `0@s.whatsapp.net`, ...(from ? 
 	 { remoteJid: "status@broadcast" } : {}) },
 	 message: { "imageMessage": { "mimetype": "image/jpeg","caption": `${samu.fake}`, 'jpegThumbnail': fs.readFileSync('./NyanBot.jpg')}}
 	}
-	const fdoc = {
+const fdoc = {
 	 key:
 	 { fromMe: false,
 	 participant: `0@s.whatsapp.net`, ...(from ? 
 	 { remoteJid: "status@broadcast" } : {}) },
 	 message: { "documentMessage": { "title":"NyanBot","h": `${samu.fake}`, 'jpegThumbnail': fs.readFileSync('./NyanBot.jpg')}}
 	}
-	const floc = {
+const floc = {
 	 key:
 	 { fromMe: false,
 	 participant: `0@s.whatsapp.net`, ...(from ? 
 	 { remoteJid: "status@broadcast" } : {}) },
-	 message: { "locationMessage": { "title":"NyanBot","h": `Adios😴`, 'jpegThumbnail': fs.readFileSync('./temp/foto/belle14.png')}}
+	 message: { "locationMessage": { "title":"NyanBot","h": `Adios😴`, 'jpegThumbnail': fs.readFileSync('./Samu.png')}}
 	}
 const fliveLoc = {
 	 key:
@@ -383,14 +383,14 @@ const fliveLoc = {
 	 { remoteJid: "status@broadcast" } : {}) },
 	 message: { "liveLocationMessage": { "title":"NyanBot","h": `${samu.fake}`, 'jpegThumbnail': fs.readFileSync('./NyanBot.jpg')}}
 	}	
-	const fvid = {
+const fvid = {
 	 key:
 	 { fromMe: false,
 	 participant: `0@s.whatsapp.net`, ...(from ? 
 	 { remoteJid: "status@broadcast" } : {}) },
-	 message: { "videoMessage": { "title":"NyanBot","h": `${samu.fake}`, 'jpegThumbnail': fs.readFileSync('./NyanBot.jpg')}}
+	 message: { "videoMessage": { "title":"NyanBot","h": `${samu.fake}`, 'jpegThumbnail': fs.readFileSync('./Samu.png')}}
 	}
-   const ftoko = {
+const ftoko = {
 		key: {
 			fromMe: false,
 			participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
@@ -402,9 +402,9 @@ const fliveLoc = {
 						"mimetype": "image/jpeg",
 						"jpegThumbnail": fs.readFileSync(`./src/fake.jpg`)
 					},
-					"title": "➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙\n 𝙎꯭𝙖͠𝙢꯭ 𝙔 ꯭𝙋꯭𝙚𝙧𝙧꯭𝙮>🔥❣️" ,
+					"title": "➫𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆🔥❣️" ,
 					"description": "",
-					"currencyCode": "AMO",
+					"currencyCode": "Sam y Perry",
 					"priceAmount1000": "999",
 					"retailerId": "NyanBot",
 					"productImageCount": 999
@@ -414,13 +414,13 @@ const fliveLoc = {
 	}
 }
 
-//*********Balasan bot
+//*********bot
 			const sendMess = (hehe, teks) => {
 				samu330.sendMessage(hehe, teks, text, {contextInfo: {"forwardingScore": 9999, "isForwarded": true}}, {quoted: mek
 })
 			}
 			const mentions = (teks, memberr, id) => {
-				(id == null || id == undefined || id == false) ? samu330.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : samu330.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": memberr, "forwardingScore": 9999, "isForwarded": true}})
+				(id == null || id == undefined || id == false) ? samu330.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : samu330.sendMessage(from, teks.trim(), extendedText, {quoted: fvid, contextInfo: {"mentionedJid": memberr, "forwardingScore": 9999, "isForwarded": true}})
 			}
 			const costum = (pesan, tipe, target, target2) => {
       samu330.sendMessage(from, pesan, tipe, {quoted: {key: {fromMe: false, participant: "0@s.whatsapp.net", ...(from ? {
@@ -466,7 +466,7 @@ if (isMedia && !mek.message.videoMessage || isQuotedImage) {
 			console.log('Finish')               
 			exec(`webpmux -set exif ${addMetadata('Auto-St-By-Samu330-Sam-y-Perry')} ${ran} -o ${ran}`, async (error) => {                                      
 				if (error) return reply(mess.error.stick)
-                                                                        samu330.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek, contextInfo: {"forwardingScore": 9999, "isForwarded": true}})    
+                                                                        samu330.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: fdoc, contextInfo: {"forwardingScore": 9999, "isForwarded": true}})    
 									reply(mess.success)       
 									fs.unlinkSync(media)       
 									fs.unlinkSync(ran)          
@@ -710,7 +710,7 @@ switch(is) {
   case 'buenos':
 buf = fs.readFileSync(`./temp/audio/wenas.mp3`)
 samu330.sendMessage(from, buf, audio, {
-  mimetype: 'audio/mp4', quoted: ftoko, duration :-999999999999999, ptt: true
+  mimetype: 'audio/mp4', quoted: fliveLoc, duration :-999999999999999, ptt: true
 })
 }
 
@@ -723,7 +723,7 @@ buf = fs.readFileSync(`./temp/audio/oni.mp3`)
 samu330.updatePresence(from, Presence.composing)
 reply(`Hola *${pushname}*, aqui andamos, mi velocidad de respueta es de: _${process.uptime()}_ milisegundos`)
 samu330.sendMessage(from, buf, audio, {
-  mimetype: 'audio/mp4', quoted: mek, duration :9999999999999999999999999, ptt: true
+  mimetype: 'audio/mp4', quoted: fliveLoc, duration :9999999999999999999999999, ptt: true
 }) 
 break
   
@@ -747,15 +747,24 @@ reply(hasil)
 			switch(command) {
 
 
-	case 'privado':
-	  if (soyYoxd) {
-          public = false
-          await samu330.sendMessage(from, 'Vale, ammm...\n*El modo privado esta activo*')
-			    }
-			  break
+		
 case 'help':
   case 'menu':
 case '?':
+const moment = require('moment-timezone')
+
+const jmn = moment.tz('Asia/Jakarta').format('HH:mm:ss')
+
+					let d = new Date
+					let locale = 'id'
+					let gmt = new Date(0).getTime() - new Date('1 Januari 2021').getTime()
+					let weton = ['Pahing', 'Pon','Wage','Kliwon','Legi'][Math.floor(((d * 1) + gmt) / 84600000) % 5]
+					let week = d.toLocaleDateString(locale, { weekday: 'long' })
+					let calender = d.toLocaleDateString(locale, {
+				day: 'numeric',
+				month: 'long',
+				year: 'numeric'
+				})
    samu330.updatePresence(from, Presence.composing)
   if (!isRegister) return reply(mess.only.daftarB)
   uptime = process.uptime()
@@ -763,13 +772,17 @@ const Menu = {
 text: `➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙😈.li Oℱịcιɑl.li
 🔐Hola *${pushname}* 
 
-ࣿ${samu}❑ Prefijo:${samu}「 ${prefix} 」
-ࣿ${samu}❑ Tiempo de actividad:${samu} *${kyun(uptime)}*
-ࣿ${samu}❑ Modo:${samu} *ON*
-ࣿ${samu}❑ Grupo:${samu} *${groupName}*
-ࣿ${samu}❑ Número de grupos:${samu} *${_registered.length}*
-ࣿ${samu}❑ Número de chats:${samu} *${totalchat.length}*
-ࣿ${samu}❑ Numero del Dueño wa.me/+529984907794${samu}
+Hora: ${jmn}
+Dia: ${week} ${weton}
+Fecha: ${calender}
+
+٬${samu}❑ Prefijo:${samu}「 ${prefix} 」
+٬${samu}❑ Tiempo de actividad:${samu} *${kyun(uptime)}*
+٬${samu}❑ Modo:${samu} *ON*
+٬${samu}❑ Grupo:${samu} *${groupName}*
+٬${samu}❑ Número de grupos:${samu} *${_registered.length}*
+٬${samu}❑ Número de chats:${samu} *${totalchat.length}*
+٬${samu}❑ Numero del Dueño wa.me/+529984907794${samu}
 
 ⍣ *BOT INFO* ⍣
 ${samu}◦ 🌐Navegador :${samu} *${samu330.browserDescription[1]}*
@@ -780,14 +793,23 @@ ${samu}◦ 📲Sistema operativo :${samu} *${samu330.user.phone.device_manufactu
 ${samu}◦ 🪀version de${samu} *WhatsApp* : *${samu330.user.phone.wa_version}*
 
 _Lista de MENUs_
+ 𖤐͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓∙∙∙∙∙·▫▫ᵒᴼᵒ▫ₒₒ▫ᵒᴼᵒ▫ₒₒ▫▫ₒₒ▫ᵒᴼᵒ▫ₒₒ▫ᵒᴼᵒ▫▫·∙∙∙∙∙
+${bodyM} ${prefix}menu1 *(Menu de Media*
+${bodyM} ${prefix}menu2 *(Menu de Sticker)*
+${bodyM} ${prefix}menu3 *(Menu de Grupos)*
+${bodyM} ${prefix}menu4 *(Menu de descargas)*
+${bodyM} ${prefix}menu5 *(Otros comandos)*
 
-${bodyM} ${prefix}menumedia
-${bodyM} ${prefix}menust
-${bodyM} ${prefix}menugrupos
-${bodyM} ${prefix}menudescargas
-
-*Pocos menus?*
-_No son todos, este bot esta en desarrollo_
+     -----------------------------------------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+𖤐͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓.                                                        𖤐͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓
+¦:
+¦:                . : 🐬𝐍𝐲𝐚𝐧𝐁𝐨𝐭🐬 : .
+¦:                🔥❣️${samu}𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆${samu}❣️🔥
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳
+            🌸 SamịPerry.li 🌸
+ ************
 `,
 	contextInfo: {
   mentionedJid: [sender], "forwardingScore": 9999, "isForwarded": true
@@ -797,43 +819,56 @@ _No son todos, este bot esta en desarrollo_
 quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "mimetype": "image/jpeg", "caption": "➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙😈\n❣️⃞🔥𝙎꯭𝙖͠𝙢꯭ 𝙔 ꯭𝙋꯭𝙚𝙧𝙧꯭𝙮🔥❣️" ,"jpegThumbnail": fs.readFileSync(`./NyanBot.jpg`)}}}})              
   break
 					
-case 'menumedia':
+case 'menu1':
    samu330.updatePresence(from, Presence.composing)
   if (!isRegister) return reply(mess.only.daftarB)
   uptime = process.uptime()
 const Menum = {
-text: `➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙.li Oℱịcιɑl.li                                                                            🔐Hola *${pushname}* 
+text: `➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙.li Oℱịcιɑl.li                                                                
+🔐Hola *${pushname}* 
 
 ⍣ *BOT INFO* ⍣
 *USA: ${prefix}ping* o *test*
 Para saber y verificar si el bot esta activo.
 
-${samu}◦ 🌐Navegador :${samu} *${samu330.browserDescription[1]}*
-${samu}◦ 📡servidor :${samu} *${samu330.browserDescription[0]}*
-${samu}◦ ✅version :${samu} *${samu330.browserDescription[2]}*
-${samu}◦ 🚄Velocidad :${samu} *${process.uptime()}*
-${samu}◦ 📲Sistema operativo :${samu} *${samu330.user.phone.device_manufacturer}*
-${samu}◦ 🪀version de${samu} *WhatsApp* : *${samu330.user.phone.wa_version}*
-
-
+     -----------------------------------------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+𖤐͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓.                                                        𖤐͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓
+¦:
+¦:                . : 🐬𝐍𝐲𝐚𝐧𝐁𝐨𝐭🐬 : .
+¦:                🔥❣️${samu}𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆${samu}❣️🔥
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳
+            🌸 SamịPerry.li 🌸
+ ************
+∙∙∙∙∙·▫▫ᵒᴼᵒ▫ₒₒ▫ᵒᴼᵒ▫ₒₒ▫▫ₒₒ▫ᵒᴼᵒ▫ₒₒ▫ᵒᴼᵒ▫▫·∙∙∙∙∙
 ${bodyM} ${prefix}imagen *(Busca imagenes de pinterest)*
 ${bodyM} ${prefix}anime
-${bodyM} ${prefix}gtav
-${bodyM} ${prefix}wanted
-${bodyM} ${prefix}wasted
-${bodyM} ${prefix}ocean
-${bodyM} ${prefix}hp
-${bodyM} ${prefix}tourl
-${bodyM} ${prefix}drawing
-${bodyM} ${prefix}hack samu|330|NyanBot
+${bodyM} ${prefix}cmd
+${bodyM} ${prefix}url2img
+${bodyM} ${prefix}lluvia *(Link de imagen)*
+${bodyM} ${prefix}gtav *(Etiqueta una imagen)*
+${bodyM} ${prefix}wanted *(Etiqueta una imagen)*
+${bodyM} ${prefix}wasted *(Etiqueta una imagen)*
+${bodyM} ${prefix}cafe *(Escribe un texto para crear logo)*
+${bodyM} ${prefix}cafe2 *(Escribe un texto para crear logo)*
+${bodyM} ${prefix}ocean *(Etiqueta una imagen)*
+${bodyM} ${prefix}ger *(Etiqueta una imagen)*
+${bodyM} ${prefix}hp *(Escribe un texto para crear logo)*
+${bodyM} ${prefix}sombra *(Escribe un texto para crear logo)*
+${bodyM} ${prefix}pubg *(Escribe un texto para crear logo)*
+${bodyM} ${prefix}tourl *(Etiqueta una imagen)*
+${bodyM} ${prefix}drawing *(Etiqueta una imagen)*
+${bodyM} ${prefix}hack samu|330|NyanBot *(Etiqueta una imagen)*
 ${bodyM} ${prefix}getpic @participante
 ${bodyM} ${prefix}ss _(Link)_ *(Captura de pantalla de un link)*
 ${bodyM} ${prefix}wp
 ${bodyM} ${prefix}loli
 ${bodyM} ${prefix}neko
 ${bodyM} ${prefix}twit
-${bodyM} ${prefix}sombra
-${bodyM} ${prefix}pubg
+${bodyM} ${prefix}cyberpunk
+${bodyM} ${prefix}letra *(Letra de una cancion)*
+${bodyM} ${prefix}acordes *(Acordes de una cancion)*
 `,
 	contextInfo: {
   mentionedJid: [sender], "forwardingScore": 9999, "isForwarded": true
@@ -843,25 +878,30 @@ ${bodyM} ${prefix}pubg
 	  quoted: ftoko})              
   break
 
-case 'menust':
+case 'menu2':
    samu330.updatePresence(from, Presence.composing)
   if (!isRegister) return reply(mess.only.daftarB)
   uptime = process.uptime()
 const Menus = {
-text: `➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙.li Oℱịcιɑl.li                                                                            🔐Hola *${pushname}*
+text: `➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙.li Oℱịcιɑl.li                                                                            
+🔐Hola *${pushname}*
 
-⍣ *BOT INFO* ⍣
-${samu}◦ 🌐Navegador :${samu} *${samu330.browserDescription[1]}*
-${samu}◦ 📡servidor :${samu} *${samu330.browserDescription[0]}*
-${samu}◦ ✅version :${samu} *${samu330.browserDescription[2]}*
-${samu}◦ 🚄Velocidad :${samu} *${process.uptime()}*
-${samu}◦ 📲Sistema operativo :${samu} *${samu330.user.phone.device_manufacturer}*
-${samu}◦ 🪀version de${samu} *WhatsApp* : *${samu330.user.phone.wa_version}*
+     -----------------------------------------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+𖤐͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓.                                                        𖤐͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓
+¦:
+¦:                . : 🐬𝐍𝐲𝐚𝐧𝐁𝐨𝐭🐬 : .
+¦:                🔥❣️${samu}𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆${samu}❣️🔥
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳
+            🌸 SamịPerry.li 🌸
+ ************
 
-
+∙∙∙∙∙·▫▫ᵒᴼᵒ▫ₒₒ▫ᵒᴼᵒ▫ₒₒ▫▫ₒₒ▫ᵒᴼᵒ▫ₒₒ▫ᵒᴼᵒ▫▫·∙∙∙∙∙
 ${bodyM} ${prefix}sticker *(Imagen, video o gif)*
 ${bodyM} ${prefix}sticker nobg *(Etiqueta una foto para crear un sticker sin fondo)*
 ${bodyM} ${prefix}autostick
+${bodyM} ${prefix}toimg
 ${bodyM} ${prefix}attp _En mantenimiento_
 ${bodyM} ${prefix}ttp _En mantenimiento_
 `,
@@ -872,12 +912,13 @@ ${bodyM} ${prefix}ttp _En mantenimiento_
   samu330.sendMessage(from, Menus, text, {
 quoted: fvid})              
   break
-case 'menugrupos':
+case 'menu3':
    samu330.updatePresence(from, Presence.composing)
   if (!isRegister) return reply(mess.only.daftarB)
   uptime = process.uptime()
 const Menug = {
-text: `➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙.li Oℱịcιɑl.li                                                                            🔐Hola *${pushname}*
+text: `➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙.li Oℱịcιɑl.li                                                                            
+🔐Hola *${pushname}*
 
 ⍣ *BOT INFO* ⍣
 ${samu}◦ 🌐Navegador :${samu} *${samu330.browserDescription[1]}*
@@ -894,14 +935,16 @@ ${bodyM} ${samu}${prefix}autost${samu}
 ${bodyM} ${samu}${prefix}antieliminar${samu}
 
 *Para que el bot entre a tu grupo, usa el siguiente comando:*
-	${prefix}entrabot
+	${prefix}entrabot *(Link del grupo)*
 
-${prefix}settarget
-
+∙∙∙∙∙·▫▫ᵒᴼᵒ▫ₒₒ▫ᵒᴼᵒ▫ₒₒ▫▫ₒₒ▫ᵒᴼᵒ▫ₒₒ▫ᵒᴼᵒ▫▫·∙∙∙∙∙
 ${bodyM} ${prefix}grupo abierto/cerrar
+${bodyM} ${prefix}leave
 ${bodyM} ${prefix}setdesc
 ${bodyM} ${prefix}setname
+${bodyM} ${prefix}adminlist
 ${bodyM} ${prefix}setpic
+${bodyM} ${prefix}enlinea
 ${bodyM} ${prefix}promote
 ${bodyM} ${prefix}demote
 ${bodyM} ${prefix}eliminar
@@ -917,12 +960,13 @@ ${bodyM} ${prefix}link
   samu330.sendMessage(from, Menug, text, {
 quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "mimetype": "image/jpeg", "caption": "➫𝑴𝒆𝒏𝒖 𝑫𝒆 𝑮𝒓𝒖𝒑𝒐𝒔\n❣️⃞🔥𝙎꯭𝙖͠𝙢꯭ 𝙔 ꯭𝙋꯭𝙚𝙧𝙧꯭𝙮🔥❣️" ,"jpegThumbnail": fs.readFileSync(`./NyanBot.jpg`)}}}})              
   break
-case 'menudescargas':
+case 'menu4':
    samu330.updatePresence(from, Presence.composing)
   if (!isRegister) return reply(mess.only.daftarB)
   uptime = process.uptime()
 const Menud = {
-text: `➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙.li Oℱịcιɑl.li                                                                            🔐Hola *${pushname}*
+text: `➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙.li Oℱịcιɑl.li                                                                            
+🔐Hola *${pushname}*
 
 ⍣ *BOT INFO* ⍣
 ${samu}◦ 🌐Navegador :${samu} *${samu330.browserDescription[1]}*
@@ -935,15 +979,75 @@ ${samu}◦ 🪀version de${samu} *WhatsApp* : *${samu330.user.phone.wa_version}*
 
 ${bodyM} ${prefix}play *(Descarga de audios en nota de voz)*
 ${bodyM} ${prefix}play2 *(Descarga de audios en mp3)*
+${bodyM} ${prefix}playvid *(Descarga de videos por nombre)*
+${bodyM} ${prefix}ig *(Fotos y videos de Instagram)*
 ${bodyM} ${prefix}ytmp3
 ${bodyM} ${prefix}ytmp4
+${bodyM} ${prefix}mfire
+
 `,
 	contextInfo: {
   mentionedJid: [sender], "forwardingScore": 9999, "isForwarded": true
 }
   }
   samu330.sendMessage(from, Menud, text, {
-quoted:  floc})              
+quoted:  fvid})              
+  break
+case 'menu5':
+   samu330.updatePresence(from, Presence.composing)
+  if (!isRegister) return reply(mess.only.daftarB)
+  uptime = process.uptime()
+const Menuo = {
+text: `➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙.li Oℱịcιɑl.li                                                                
+🔐Hola *${pushname}* 
+
+     -----------------------------------------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+𖤐͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓.                                                        𖤐͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓͓
+¦:
+¦:                . : 🐬𝐍𝐲𝐚𝐧𝐁𝐨𝐭🐬 : .
+¦:                🔥❣️${samu}𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆${samu}❣️🔥
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳̳
+            🌸 SamịPerry.li 🌸
+ ************
+∙∙∙∙∙·▫▫ᵒᴼᵒ▫ₒₒ▫ᵒᴼᵒ▫ₒₒ▫▫ₒₒ▫ᵒᴼᵒ▫ₒₒ▫ᵒᴼᵒ▫▫·∙∙∙∙∙
+${bodyM} ${prefix}voz *(idioma)* *(Texto)*
+${bodyM} ${prefix}block
+${bodyM} ${prefix}tiktokstalk
+${bodyM} ${prefix}hidetag
+${bodyM} ${prefix}cc
+${bodyM} ${prefix}>
+${bodyM} ${prefix}$
+${bodyM} ${prefix}cambiar
+${bodyM} ${prefix}trigger
+${bodyM} ${prefix}slow
+${bodyM} ${prefix}bass
+${bodyM} ${prefix}tupai
+${bodyM} ${prefix}gemuk
+${bodyM} ${prefix}arti
+${bodyM} ${prefix}quotes
+${bodyM} ${prefix}rate
+${bodyM} ${prefix}wa.me
+${bodyM} ${prefix}idioimas
+${bodyM} ${prefix}paises
+${bodyM} ${prefix}reversa
+${bodyM} ${prefix}verdad
+${bodyM} ${prefix}meme
+${bodyM} ${prefix}readmore
+${bodyM} ${prefix}map
+${bodyM} ${prefix}soyyo
+${bodyM} ${prefix}blocklist
+${bodyM} ${prefix}leerimagen
+
+
+`,
+	contextInfo: {
+  mentionedJid: [sender], "forwardingScore": 9999, "isForwarded": true
+}
+  }
+  samu330.sendMessage(from, Menuo, text, {
+	  quoted: ftoko})              
   break
 
 					
@@ -952,7 +1056,7 @@ quoted:  floc})
 				   publik = true
 				   samu330.sendMessage(mek.key.remoteJid, `「 *PUBLIC-MODE* 」`, MessageType.text, { quoted:ftoko})
 			break
-				case 'self':
+			case 'self':
 				   publik = false
 				   samu330.sendMessage(mek.key.remoteJid, `「 *SELF-MODE* 」`, MessageType.text, { quoted:ftoko})
 			break
@@ -982,13 +1086,14 @@ quoted:  floc})
 										
 					case 'cc':
 					try {
-anu = await fetchJson(`https://videfikri.com/api/ccgenerator/`, {
-method: 'get'
-  })
-  reply(`*${anu.result.card.network}*\n💳 _Numero de tarjeta_ : ${anu.result.card.number}\n# _CVV_ : ${anu.result.card.cvv}\n📑 _pin_ : ${anu.result.card.pin}\n💰 _Monto_ : ${anu.result.card.balance}\n_Mes de vencimiento_ : ${anu.result.card.expiration_month}\n_Año de vencimiemto_ : ${anu.result.card.expiration_year}\n\n*Informacion de la tarjeta*🧾\n\👨🏻‍🦱 _Propietario_ : ${anu.result.customer.name}\n_🌍Direccion_ : ${anu.result.customer.address}\n_🌆Ciudad_ : ${anu.result.customer.country}`)
+						anu = await fetchJson(`https://videfikri.com/api/ccgenerator/`, {
+						method: 'get'
+ 						})
+  						reply(`*${anu.result.card.network}*\n💳 _Numero de tarjeta_ : ${anu.result.card.number}\n# _CVV_ : ${anu.result.card.cvv}\n📑 _pin_ : ${anu.result.card.pin}\n💰 _Monto_ : ${anu.result.card.balance}\n_Mes de vencimiento_ : ${anu.result.card.expiration_month}\n_Año de vencimiento_ : ${anu.result.card.expiration_year}\n\n*Informacion de la tarjeta*🧾\n\👨🏻‍🦱 _Propietario_ : ${anu.result.customer.name}\n_🌍Direccion_ : ${anu.result.customer.address}\n_🌆Ciudad_ : ${anu.result.customer.country}`)
                                                                                                             } catch {
-    reply(mess.ferr)                                                                                        }
-  break
+    						reply(mess.ferr)                                                                                        
+													    }
+  						break
 					
 					
 				case 'vcard':
@@ -1003,13 +1108,7 @@ method: 'get'
 						}
 					break
 					
-	case 'bitly':
-				samu330.updatePresence(from, Presence.composing) 
-                data = await fetchJson(`https://tobz-api.herokuapp.com/api/bitly?url=${args.join(' ')}&apikey=BotWeA`)
-                hasil = `link : ${args.join(' ')}\n\nOutput : ${data.result}`
-                reply(hasil)
-                //
-                break
+	
 			case 'mfire':
 				   if (args.length < 1) return reply('Y el link de mediafire?')
 				   var link = args.join(' ')
@@ -1018,7 +1117,8 @@ method: 'get'
 		smyperry = await getBuffer(data.result.download)
                 hasil = `link : ${link}\n\n*SI NO SE ENVIA EL ARCHIVO, PUEDE TOCAR EL ENLACE DE ABAJO Y SU DESCARGA INICIARA AL INSTANTE* : ${data.result.download}`
                 reply(hasil)
-		samu330.sendMessage(from, smyperry, document, {                                                                mimetype: 'file', filename: `${data.result.filename}`, quoted: floc
+		samu330.sendMessage(from, smyperry, document, {                                                                
+			mimetype: 'file', filename: `${data.result.filename}`, quoted: floc
   })	
                 //
                 break
@@ -1141,7 +1241,7 @@ caption: teks, contextInfo: {
   mentionedJid: [me.jid]}})
   break
 
-//*********-Kecepatan respon
+//*********
 				case 'ping':
 				var groups = samu330.chats.array.filter(v => v.jid.endsWith('g.us'))
 				var privat = samu330.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net'))
@@ -1197,7 +1297,8 @@ samu330.sendMessage(from, pok, image, {
 }
 break
 
-case 'listonline':
+		case 'listonline':
+		case 'enlinea':
         		let ido = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : from
 			    let online = [...Object.keys(samu330.chats.get(ido).presences), samu330.user.jid]
 			    samu330.sendMessage(from, 'List Online:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join`\n`, text, { quoted: mek,
@@ -1486,11 +1587,13 @@ reply('Se cambio la foto del grupo')
 break
 
 case 'porno': 
-const porn = await axios.get('https://meme-api.herokuapp.com/gimme/porn', {
+porn = await fetchJson('https://meme-api.herokuapp.com/gimme/porn', {
 method: 'get'
 	}) 
 reply(mess.wait)
-	samu330.sendMessage(from, `${porn.url}`, image, {                                                                 quoted: mek                                                                       
+buffer = await getBuffer(`${porn.url}`)
+	samu330.sendMessage(from, buffer, image, {                                                                 
+		quoted: fdoc                                                                       
 	})
   break
 					
@@ -1570,7 +1673,7 @@ break
 				break
 
 case 'sombra':
-                                                                                                          if (args.length < 1) return reply(`ejemplo: ${prefix}sombra sam y perry`)
+if (args.length < 1) return reply(`ejemplo: ${prefix}sombra sam y perry`)
 sdow = args.join(' ')
 reply(mess.wait)
 shan = await getBuffer(`https://videfikri.com/api/textmaker/shadowtext/?text=${sdow}`)
@@ -1587,6 +1690,16 @@ samu330.sendMessage(from, shan, image, {quoted: ftoko, contextInfo: {"forwarding
 //
 break
 
+case 'cafe2':
+
+if (args.length < 1) return reply(`ejemplo: ${prefix}cafe sam y perry`)
+sdow = args.join(' ')
+reply(mess.wait)
+shan = await getBuffer(`https://videfikri.com/api/textmaker/coffeecup2/?text=${sdow}`)
+samu330.sendMessage(from, shan, image, {quoted: ftoko, contextInfo: {"forwardingScore": 999, "isForwarded": true}})
+//
+break
+					
 case 'lluvia':
 
 if (args.length < 1) return reply(`ejemplo: ${prefix}lluvia (link de imagen)`)
@@ -1805,7 +1918,7 @@ reply(hasil)
 break
 
 //*********
-  case 'reverse':
+  case 'reversa':
     if (!isRegister) return reply(mess.only.daftarB)
   
 if (args.length < 1) return samu330.sendMessage(from, 'Escribe el texto', text, {
@@ -2078,10 +2191,10 @@ case 'play':
   buffer = await getBuffer(anu.result.thumbnail)
   lagu = await getBuffer(anu.result.url_audio)
   samu330.sendMessage(from, buffer, image, {
-quoted: mek, caption: infomp3
+quoted: fliveLoc, caption: infomp3
   })
   samu330.sendMessage(from, lagu, audio, {
-mimetype: 'audio/mp4', filename: `${anu.result.title}.mp3`, quoted: mek
+mimetype: 'audio/mp4', ptt : true, duration :-999999999999999, filename: `${anu.result.title}.mp3`, quoted: fvid
   })
   
   } catch {
@@ -2102,10 +2215,30 @@ case 'play2':
   buffer = await getBuffer(anu.result.thumbnail)
   lagu = await getBuffer(anu.result.url_audio)
   samu330.sendMessage(from, buffer, image, {
-quoted: mek, caption: infomp3, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
+quoted: fvid, caption: infomp3, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
   })
   samu330.sendMessage(from, lagu, audio, {
-mimetype: 'audio/mp4', duration :-999999999999999, filename: `${anu.result.title}.mp3`, quoted: mek  
+mimetype: 'audio/mp4', duration :-999999999999999, filename: `${anu.result.title}.mp3`, quoted: fvid  
+  })                                                                                                                                                                                                                  } catch {                                                                                                   reply(mess.ferr)
+  }                                                        
+break
+//Case creado por Samu
+case 'playvid':
+  if (!isRegister) return reply(mess.only.daftarB)
+  if (args.length < 1) return reply('Escribe el nombre')
+  reply(mess.wait)
+  play = body.slice(8)
+  try {
+  sam330 = await fetchJson(`https://videfikri.com/api/playmp4/?query=${play}`)
+	  if (sam330.error) return reply(sam330.error)
+	  infomp3 = `*Audio*\n◦ *Nombre* : ${sam330.result.judul}\n◦ *Fuente* : ${sam330.result.source}\n◦ *Tamaño* : ${sam330.result.size}\n\n_El video se esta mandando, si no llega descargue por el link_\n◦ *Link* : ${sam330.result.urlVideo}                                                                                                `
+  buffer = await getBuffer(sam330.result.imgUrl)
+  perry = await getBuffer(sam330.result.urlVideo)
+  samu330.sendMessage(from, buffer, image, {
+quoted: fvid, caption: infomp3, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
+  })
+  samu330.sendMessage(from, perry, audio, {
+mimetype: 'audio/mp4', duration :-999999999999999, filename: `${sam330.result.judul}.mp3`, quoted: fvid  
   })                                                                                                                                                                                                                  } catch {                                                                                                   reply(mess.ferr)
   }                                                        
 break
@@ -2123,10 +2256,10 @@ case 'ytmp3':
   buffer = await getBuffer(sam.result.thumb)
   lagu = await getBuffer(sam.result.link)
   samu330.sendMessage(from, buffer, image, {
-quoted: mek, caption: infomp3, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
+quoted: fvid, caption: infomp3, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
   })
   samu330.sendMessage(from, lagu, audio, {
-mimetype: 'audio/mp4', duration :-999999999999999, filename: `${sam.result.title}.mp3`, quoted: mek, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
+mimetype: 'audio/mp4', duration :-999999999999999, filename: `${sam.result.title}.mp3`, quoted: fliveLoc, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
   })
   
   } catch {
@@ -2150,7 +2283,7 @@ case 'ytmp4':
 quoted: fvid, caption: infomp3
   })
   samu330.sendMessage(from, lagu, video, {
-mimetype: 'video/mp4', duration :-999999999999999, filename: `${anu.result.title}.mp4`, quoted: floc
+mimetype: 'video/mp4', duration :-999999999999999, filename: `${anu.result.title}.mp4`, quoted: fvid
   })
   
   } catch {
@@ -2175,11 +2308,6 @@ mimetype: 'video/mp4', duration :-999999999999999, filename: `${anu.result.title
 					}
 					break
 
-			case 'settarget':
-				if (args.length < 1) return
-				targetprivate = args[0]
-				samu330.sendMessage(from, `listo, respuesta privada : ${targetprivate}`, text, {quoted:fdoc})
-				break
 					
 //*********download pinterest
 case 'pin':
@@ -2208,12 +2336,17 @@ case 'ig':
   
   reply(mess.wait)
     if(!isUrl(args[0]) && !args[0].includes('instagram')) return reply('Formato de link incorrecto')
-  play = body.slice(4)
+  smyprry = body.slice(3)
   try {
-  anu = await fetchJson(`http://lolhuman.herokuapp.com/api/instagram?apikey=${lolKey}&url=${play}`)
-  lagu = await getBuffer(anu.result)
-  samu330.sendMessage(from, lagu, video, {
-mimetype: 'video/mp4', filename: `Imlexa.mp4`, quoted: mek
+  sam330 = await fetchJson(`https://videfikri.com/api/igdl/?url=${smyprry}`)
+  infomp3 = `*Audio*\n◦ *Nombre* : ${sam330.result.full_name}\n◦ *Usuario* : ${sam330.result.username}\n◦ *Descripcion* : ${sam330.result.caption}\n◦ *Likes* : ${sam330.result.like}\n◦ *Comentarios* : ${sam330.result.comment}\n◦ *Duracion* : ${sam330.result.duration}\n_Por si el archivo ne se envia, descarge directamente desde aqui:_\n◦ *Link* : ${sam330.result.video}`		
+  sm330 = await getBuffer(anu.result.url_video)
+  samyperry = await getBuffer(anu.result.thumb)
+  samu330.sendMessage(from, samyperry, image, {
+quoted: fvid, caption: infomp3, contextInfo: {"forwardingScore": 9999, "isForwarded": true}
+  })
+  samu330.sendMessage(from, sm330, video, {
+mimetype: 'video/mp4', duration: -99999999999999999999, filename: `${sam330.result.full_name}.mp4`, quoted: fvid
   })
   
   } catch {
@@ -2340,7 +2473,7 @@ mimetype: 'video/mp4', filename: `${anu.nameInfo}.mp4`, quoted: mek
 								console.log('Finish')
 								exec(`webpmux -set exif ${addMetadata(`${pack}`)} ${ran} -o ${ran}`, async (error) => {
 									if (error) return reply(mess.error.stick)
-									samu330.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek, contextInfo: {"forwardingScore": 9999, "isForwarded": true}})
+									samu330.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: fdoc, contextInfo: {"forwardingScore": 9999, "isForwarded": true}})
                                                                         reply(mess.success)
 									fs.unlinkSync(media)	
 									fs.unlinkSync(ran)	
@@ -2373,7 +2506,7 @@ mimetype: 'video/mp4', filename: `${anu.nameInfo}.mp4`, quoted: mek
 								console.log('Finish')
 								exec(`webpmux -set exif ${addMetadata('StMv-By:-Samu-y-Perry')} ${ran} -o ${ran}`, async (error) => {
 									if (error) return reply(mess.error.stick)
-									samu330.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek, contextInfo: {"forwardingScore": 9999, "isForwarded": true}})
+									samu330.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: floc, contextInfo: {"forwardingScore": 9999, "isForwarded": true}})
                                                                         reply(mess.success)
 									fs.unlinkSync(media)
 									fs.unlinkSync(ran)
@@ -2403,7 +2536,7 @@ mimetype: 'video/mp4', filename: `${anu.nameInfo}.mp4`, quoted: mek
 								if (err) return reply(mess.error.stick)
 								exec(`webpmux -set exif ${addMetadata('StNoBg-By:-Sam-y-Perry')} ${ranw} -o ${ranw}`, async (error) => {
 									if (error) return reply(mess.error.stick)
-									samu330.sendMessage(from, fs.readFileSync(ranw), sticker, {quoted: mek, contextInfo: {"forwardingScore": 9999, "isForwarded": true}})
+									samu330.sendMessage(from, fs.readFileSync(ranw), sticker, {quoted: fliveLoc, contextInfo: {"forwardingScore": 9999, "isForwarded": true}})
 									fs.unlinkSync(ranw)
 								})
 								//client.sendMessage(from, fs.readFileSync(ranw), sticker, {quoted: mek})
@@ -2637,7 +2770,8 @@ if (args[0] === '1') {
 	if (isAntiMedia) return reply('*Ya está activo*')          
 	antimedia.push(from)                          
 	fs.writeFileSync('./data/antimedia.json', JSON.stringify(antimedia))      
-	reply(`*[ Activado ]*`)             
+	reply(`*[ Activado ]*`)  
+	reply(`*La persona que envie fotos o videos sera eliminada*`)  
 } else if (args[0] === '0') {             
 	var ini = antimedia.indexOf(from)
 	antimedia.splice(ini, 1)           
@@ -2656,7 +2790,8 @@ if (args[0] === '1') {
 	if (isAutoSt) return reply('*Ya está activo*')          
 	autostick.push(from)             
 	fs.writeFileSync('./data/autostick.json', JSON.stringify(autostick))      
-	reply(`*[ Activado ]*`)         
+	reply(`*[ Activado ]*`)  
+	reply(`*ahora, todas las fotos que se envien en el grupo se convertiran en sticker automaticamente*`)  
 } else if (args[0] === '0') {           
 	var ini = autostick.indexOf(from)
 	autostick.splice(ini, 1)                  
@@ -2677,6 +2812,7 @@ break
                  	                        badword.push(from)
                  	                        fs.writeFileSync('./data/badword.json', JSON.stringify(badword))
                   	                        reply(`*[ Activado ]*`)
+						reply(`*Las personas que envien una mala palabra sera eliminada*. _Para ver la lista de malas palabras usa el comando: listbad_`)  
                                         } else if (args[0] === '0') {
                   	                        var ini = antibad.indexOf(from)
 						badword.splice(ini, 1)
@@ -2857,39 +2993,37 @@ case 'unblock':
 
 				//Reparado por Samu330
 
-				/*case 'ttp':
+				case 'ttp':
 					if (args.length < 1) return reply('Y el texto?')
                                         if (!isRegister) return reply(mess.only.daftarB)
 					ranp = getRandom('.png')
 					rano = getRandom('.webp')
 					teks = body.slice(4).trim()
-					anu = await fetchJson(`https://api.xteam.xyz/ttp?file&text=${teks}`, {method: 'get'})
-					if (anu.error) return reply(anu.error)
+					anu = await getBuffer(`https://api.xteam.xyz/ttp?file&text=${teks}`)
 					exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 						fs.unlinkSync(ranp)
 						if (err) return reply(mess.error.stick)
-						samu330.sendMessage(from, fs.readFileSync(rano), sticker, {quoted: mek})
+						samu330.sendMessage(from, fs.readFileSync(rano), sticker, {quoted: fliveLoc})
 						fs.unlinkSync(rano)
 					})
-					break*/
-
-				case 'ttp':
-			if (args.length < 1) return reply("palavras/words/números/numbers.")
-			const ttpst = await axios.get(`https://st4rz.herokuapp.com/api/ttp?kata=${body.slice(5).trim()}`)
-			await samu330.sendMessage(from, ttpst.data.result, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
-			break
-
+					break
 
 					//By Samu330
 				
-					case 'attp':
-			if (args.length < 1) return reply("palavras/words/números/numbers")
-			await reply(mess.wait)
-			await axios.get(`https://api.xteam.xyz/attp?file&text=${body.slice(4).trim}`, { responseType: 'arraybuffer' }).then(async (response) => {
-				const attp = Buffer.from(response.data, 'binary').toString('base64')
-				await samu330.sendMessage(from, attp, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
-			})
-			break
+					case 'ttp':
+					if (args.length < 1) return reply('Y el texto?')
+                                        if (!isRegister) return reply(mess.only.daftarB)
+					ranp = getRandom('.png')
+					rano = getRandom('.webp')
+					teks = body.slice(4).trim()
+					anu = await getBuffer(`https://api.xteam.xyz/attp?file&text=${teks}`)
+					exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+						fs.unlinkSync(ranp)
+						if (err) return reply(mess.error.stick)
+						samu330.sendMessage(from, fs.readFileSync(rano), sticker, {quoted: fliveLoc})
+						fs.unlinkSync(rano)
+					})
+					break
 //*********-Tagall member
 				case 'tagall':
 					case 'all':
@@ -2938,7 +3072,7 @@ break
 					break
 
 //*********menaikan jabatan
-      case 'promote':
+     				 case 'promote':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -3063,7 +3197,7 @@ case 'setppbot':
   break
 
 //*********Mengambil link grup
-    case 'link':
+  			  case 'link':
 				if (!isGroup) return reply(mess.only.group)
 				const linkgc = await samu330.groupInviteCode(from)
 				samu330.sendMessage(from, `https://chat.whatsapp.com/${linkgc}`, text, {quoted:fdoc})
