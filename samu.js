@@ -56,7 +56,7 @@ const bad = JSON.parse(fs.readFileSync('./data/bad.json'))
 const badword = JSON.parse(fs.readFileSync('./data/badword.json'))
 const antimedia = JSON.parse(fs.readFileSync('./data/antimedia.json'))
 const antilink = JSON.parse(fs.readFileSync('./data/antilink.json'))
-const samih = JSON.parse(fs.readFileSync('./data/simi.json'))
+const simi = JSON.parse(fs.readFileSync('./data/simi.json'))
 const autostick = JSON.parse(fs.readFileSync('./data/autostick.json'))
 //*********
 
@@ -333,6 +333,7 @@ samu330.on('chat-update', async (mek) => {
 			const isAntiLink = isGroup ? antilink.includes(from) : false
 			const isAntiMedia = isGroup ? antimedia.includes(from) : false
 			const isAutoSt = isGroup ? autostick.includes(from) : false
+			const isSimi = isGroup ? simi.includes(from) : false
       const isRegister = checkRegisteredUser(sender)
       const soyYoxd = sender === botNumber ? true : false
       const q = args.join(' ')
@@ -2863,6 +2864,26 @@ break
 					}
 					break
 					
+				case 'simi':
+                                	if (!isGroup) return reply(mess.only.group)
+					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (args.length < 1) return reply('escriba *1* para activar')
+					if (args[0] === '1') {
+						if (isSimi) return reply('Ya esta activo')
+						simi.push(from)
+						fs.writeFileSync('./data/simi.json', JSON.stringify(simi))
+						reply('*Anti-link activado ✔️*')
+						samu330.sendMessage(from,`El modo SIMSIMI esta activado:D_`, text)
+					} else if ((args[0]) === '0') {
+						var ini = simi.indexOf(from)
+						simi.splice(ini, 1)
+						fs.writeFileSync('./data/simi.json', JSON.stringify(simi))
+						reply('desactivado ✔️')
+					} else {
+						reply('*1 para activar, 0 para desactivar*')
+					}
+					break
+					
 
 //*********stiker to video
  case 'tovid':
@@ -3220,12 +3241,12 @@ break
 
 //*********Simsimi talk
 				case 'simi':
-					if (args.length < 1) return reply(`Hola ${pushname}`)
-					teks = body.slice(6)
+					if (!isRegister) return reply(mess.only.daftarB)
+					if (!isSimi) return
+					texto = body.slice(0)
 					try { 
-					anu = await fetchJson(`https://api.xteam.xyz/simsimi?kata=${teks}&APIKEY=${xKey}`, {method: 'get'})
-					if (anu.error) return reply('Escribe el texto bien')
-					reply(anu.jawaban)
+					anu = await fetchJson(`https://api.simsimi.net/v1/?text=${texto}&lang=es`, {method: 'get'})
+					reply(anu.success)
 					} catch {
 					  reply(mess.ferr)
 					}
